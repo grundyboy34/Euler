@@ -1,5 +1,6 @@
 package com;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -8,7 +9,7 @@ public class Fibonacci {
 	static int TruePrev = 0;
 	static int prevNum = 0;
 	static int number = 1;
-	static int FINAL_NUMBER = 10;
+	static int MAX_NUMBER = 4000000;
 	static ArrayList<Integer> sequence = new ArrayList<Integer>();
 	static HashSet<Integer> sequenceSet = new HashSet<Integer>();
 
@@ -29,15 +30,16 @@ public class Fibonacci {
 	public static void Hash() {
 		sequenceSet.addAll(sequence);
 		for (int key : sequenceSet) {
+			if (key % 2 == 0)
 			sum += key;
 		}
 	}
 
 	public static void getSeq() {
-		for (int i = 0; i < FINAL_NUMBER; i++) {
-			prevNum = number;
+		while(number < MAX_NUMBER) {
+			prevNum = number;			
 			sequence.add(number += TruePrev);
-			TruePrev = prevNum;
+			TruePrev = prevNum;			
 		}
 		Hash();
 	}
